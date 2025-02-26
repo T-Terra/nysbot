@@ -1,1 +1,47 @@
-<h1>Front Bot</h1>
+{% extends "frontbot/base.html" %}
+
+{% block content %}
+{% load static %}
+<div class="container" style="padding-top: 3rem;">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            <div class="card" style="width: 22rem;">
+                <img src="{% static 'img/robot.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <a style="text-decoration: none; color: black;" href="{{workflow.url}}" target="_blank"><h5 class="card-title">Bot: {{workflow.name}}</h5></a>
+                  <p class="card-text">
+                    <span style="font-weight: bold;">Status:</span> <span class="success" id="status"></span><br>
+                    <span style="font-weight: bold;">Resultado: </span><span class="success" id="conclusion"></span><br>
+                    <span style="font-weight: bold;">Iniciado em: </span><span id="created_at"></span><br>
+                    <span style="font-weight: bold;">Finalizado em: </span><span id="updated_at"></span><br>
+                    </p>
+                  <a href="#" class="btn btn-primary">Executar Bot</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateWorkflowStatus() {
+        $.ajax({
+            url: "{% url 'ajaxStatus' %}",
+            type: 'GET',
+            success: function(data) {
+                $('#status').text(data.workflow.status);
+                $('#conclusion').text(data.workflow.conclusion);
+                $('#created_at').text(data.workflow.created_at);
+                $('#updated_at').text(data.workflow.updated_at);
+            },
+            error: function(xhr, errmsg, err) {
+                console.log('Erro ao buscar status:', errmsg);
+            }
+        });
+    } 
+
+    setInterval(updateWorkflowStatus, 30000);
+
+    // Executar a primeira vez quando a página carregar
+    updateWorkflowStatus();
+</script>
+{% endblock %}
