@@ -11,7 +11,7 @@
                   <a style="text-decoration: none; color: black;" href="{{workflow.url}}" target="_blank"><h5 class="card-title">Bot: {{workflow.name}}</h5></a>
                   <p class="card-text">
                       <span style="font-weight: bold;">Status:</span> 
-                      <span hx-get="{% url 'check_status' %}" hx-trigger="load, every 20s" hx-target="#status">
+                      <span hx-get="{% url 'check_status' %}" hx-trigger="load, every 30s" hx-target="#status">
                         <span id="status">
                           <span class="spinner-border spinner-border-sm" role="status"></span>
                         </span>
@@ -35,7 +35,11 @@
                         </span>
                       </span><br>
                   </p>
-                  <a href="#" class="btn btn-primary">Executar Bot</a>
+                  <span hx-get="{% url 'check_status_button' %}" hx-trigger="load, every 15s" hx-target="#trigger-button" >
+                    <span id="trigger-button">
+                      <span class="spinner-border text-primary" style="width: 2rem; height: 2rem; margin-left: 2.5rem;" role="status"></span>
+                    </span>
+                  </span>
                 </div>
             </div>
         </div>

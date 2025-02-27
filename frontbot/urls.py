@@ -24,9 +24,11 @@ urlpatterns = [
 
 htmxurlpatterns = [
     path('check-status/', check_status, name='check_status'),
+    path('check-status-button/', check_status_button, name='check_status_button'),
     path('check-conclusion/', check_conclusion, name='check_conclusions'),
     path('check-created-at/', check_created_at, name='created_at'),
     path('check-updated-at/', check_updated_at, name='updated_at'),
+    path('trigger-workflow/', trigger_view, name='trigger_workflow')
 ]
 
 urlpatterns += htmxurlpatterns

@@ -1,0 +1,9 @@
+{% if workflow.status == 'completed' %}
+    <span hx-get="{% url 'trigger_workflow' %}" hx-trigger="click once" hx-target="#trigger" >
+        <span id="trigger">
+            <span class="btn btn-primary">Executar Bot</span>
+        </span>
+    </span>
+{% else %}
+    <span class="btn btn-primary disabled">Executando...</span>
+{% endif %}

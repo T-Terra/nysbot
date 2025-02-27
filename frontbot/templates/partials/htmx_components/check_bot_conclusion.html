@@ -4,4 +4,6 @@
     <span class="badge text-bg-danger">Falhou</span>
 {% elif workflow.conclusion == 'cancelled' %}
     <span class="badge text-bg-secondary">Cancelado</span>
+{% else %}
+    <span class="spinner-border spinner-border-sm" role="status"></span>
 {% endif %}
