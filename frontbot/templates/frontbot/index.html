@@ -10,9 +10,9 @@
                 <div class="card-body">
                   <a style="text-decoration: none; color: black;" href="{{workflow.url}}" target="_blank"><h5 class="card-title">Bot: {{workflow.name}}</h5></a>
                   <p class="card-text">
-                    <span style="font-weight: bold;">Status:</span> <span id="status"></span><br>
-                    <span style="font-weight: bold;">Resultado: </span><span id="conclusion"></span><br>
-                    <span style="font-weight: bold;">Iniciado em: </span><span id="created_at"></span><br>
+                    <span style="font-weight: bold;">Status:</span> <span hx-get="{% url 'check_status' %}" hx-trigger="every 25s" hx-target="#status"><span id="status"></span></span><br>
+                    <span style="font-weight: bold;">Resultado: </span><span hx-get="{% url 'check_conclusions' %}" hx-trigger="every 40s" hx-target="#conclusion"><span id="conclusion"></span></span><br>
+                    <span style="font-weight: bold;">Iniciado em: </span><span hx-get="{% url 'created_at' %}" hx-trigger="every 40s" hx-target="#created_at"><span id="created_at"></span></span><br>
                     <span style="font-weight: bold;">Finalizado em: </span><span id="updated_at"></span><br>
                     </p>
                   <a href="#" class="btn btn-primary">Executar Bot</a>
@@ -21,32 +21,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    function updateWorkflowStatus() {
-        $.ajax({
-            url: "{% url 'ajaxStatus' %}",
-            type: 'GET',
-            success: function(data) {
-                data.workflow.status == 'completed' 
-                ? $('#status').text(data.workflow.status).removeClass().addClass('success') 
-                : $('#status').text(data.workflow.status).removeClass().addClass('in_progress');
-                data.workflow.conclusion == 'success'
-                ? $('#conclusion').text(data.workflow.conclusion).removeClass().addClass('success') 
-                : $('#conclusion').text(data.workflow.conclusion).removeClass().addClass('failure');
-                
-                $('#created_at').text(data.workflow.created_at);
-                $('#updated_at').text(data.workflow.updated_at);
-            },
-            error: function(xhr, errmsg, err) {
-                console.log('Erro ao buscar status:', errmsg);
-            }
-        });
-    } 
-
-    setInterval(updateWorkflowStatus, 30000);
-
-    // Executar a primeira vez quando a página carregar
-    updateWorkflowStatus();
-</script>
 {% endblock %}

@@ -1,0 +1,7 @@
+{% if workflow.status == 'completed' %}
+    <span class="badge text-bg-success">Completo</span>
+{% elif workflow.status == 'in_progress' %}
+    <span class="badge text-bg-warning">Em Progresso...</span>
+{% elif workflow.status == 'queued' %}
+    <span class="badge text-bg-secondary">Na Fila...</span>
+{% endif %}

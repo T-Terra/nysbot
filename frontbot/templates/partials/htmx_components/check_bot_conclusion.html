@@ -1,0 +1,7 @@
+{% if workflow.conclusion == 'success' %}
+    <span class="badge text-bg-success">Sucesso</span>
+{% elif workflow.conclusion == 'failure' %}
+    <span class="badge text-bg-danger">Falhou</span>
+{% elif workflow.conclusion == 'cancelled' %}
+    <span class="badge text-bg-secondary">Cancelado</span>
+{% endif %}

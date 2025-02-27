@@ -15,9 +15,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .views import index, ajaxStatus
+from .views import index
+from .htmx_views import *
 
 urlpatterns = [
     path('', index, name='home'),
-    path('workflow-status/', ajaxStatus, name='ajaxStatus'),
 ]
+
+htmxurlpatterns = [
+    path('check-status/', check_status, name='check_status'),
+    path('check-conclusion/', check_conclusion, name='check_conclusions'),
+    path('check-created-at/', check_created_at, name='created_at'),
+]
+
+urlpatterns += htmxurlpatterns
