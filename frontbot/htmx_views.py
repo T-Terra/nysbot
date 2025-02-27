@@ -14,3 +14,7 @@ def check_conclusion(req):
 def check_created_at(req):
     status_info = get_latest_workflow_status()
     return render(req, 'partials/htmx_components/check_bot_created_at.html', {'workflow': {'created_at': status_info['created_at']}})
+
+def check_updated_at(req):
+    status_info = get_latest_workflow_status()
+    return render(req, 'partials/htmx_components/check_bot_updated_at.html', {'workflow': {'updated_at': status_info['updated_at']}})

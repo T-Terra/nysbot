@@ -26,6 +26,7 @@ htmxurlpatterns = [
     path('check-status/', check_status, name='check_status'),
     path('check-conclusion/', check_conclusion, name='check_conclusions'),
     path('check-created-at/', check_created_at, name='created_at'),
+    path('check-updated-at/', check_updated_at, name='updated_at'),
 ]
 
 urlpatterns += htmxurlpatterns
