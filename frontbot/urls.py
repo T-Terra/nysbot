@@ -15,11 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .views import index
+from .views import index, response_bot
 from .htmx_views import *
 
 urlpatterns = [
     path('', index, name='home'),
+    path('response-bot/', response_bot, name='response-bot')
 ]
 
 htmxurlpatterns = [
