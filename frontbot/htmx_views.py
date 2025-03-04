@@ -1,10 +1,14 @@
 from django.shortcuts import render
+from .views import is_admin
 
 
 from .get_data_github import get_latest_workflow_status, trigger_workflow
 
 
 def check_status_button(req):
+    if not is_admin(req.user):
+        return render(req, 'partials/htmx_components/button_disabled.html', {'status_code': 403})
+    
     status_info = get_latest_workflow_status()
     return render(req, 'partials/htmx_components/button_trigger.html', {'workflow': {'status': status_info['status']}})
 
