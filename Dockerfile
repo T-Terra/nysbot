@@ -14,10 +14,9 @@ RUN pip install poetry
 RUN poetry install --no-root
 
 RUN poetry run python manage.py migrate && \
-    poetry run python manage.py createsuperuser \
-    --noinput \
-    --username "$DJANGO_SUPERUSER_USERNAME" \
-    --password "$DJANGO_SUPERUSER_PASSWORD" || true
+    poetry run python manage.py shell -c "from django.contrib.auth import get_user_model; \
+    User = get_user_model(); \
+    User.objects.create_superuser('$DJANGO_SUPERUSER_USERNAME', '$DJANGO_SUPERUSER_EMAIL', '$DJANGO_SUPERUSER_PASSWORD')" || true
 
 # Comando para rodar o app (mude conforme necessário)
 CMD ["poetry", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]
