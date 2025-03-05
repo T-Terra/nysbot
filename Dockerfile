@@ -18,6 +18,4 @@ RUN poetry run python manage.py migrate && \
 
 # Comando para rodar o app (mude conforme necessário)
 # CMD ["poetry", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]
-CMD ["poetry", "run", "python", "create_superuser.py"]
-
-ENTRYPOINT ["poetry", "run", "gunicorn", "--bind", "0.0.0.0:8000", "core.wsgi:application"]
+CMD poetry run python create_superuser.py || true && poetry run gunicorn --bind 0.0.0.0:8000 core.wsgi:application
