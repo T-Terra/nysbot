@@ -15,12 +15,20 @@
     <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav style="padding: 0px;" class="navbar bg-body-tertiary">
-        <div style="background-color: cadetblue;" class="container-fluid">
-          <a style="margin-left: 1.8rem;" class="navbar-brand" href="{% url 'home' %}">
-            <img src="{% static 'img/robot.png' %}" alt="Logo" width="50" height="50">
-          </a>
+    <nav style="padding: 0px;" class="navbar navbar-expand-lg bg-body-tertiary">
+      <div style="background-color: cadetblue;" class="container-fluid">
+        <a style="margin-left: 1.8rem;" class="navbar-brand" href="{% url 'home' %}">
+          <img src="{% static 'img/robot.png' %}" alt="Logo" width="50" height="50">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" aria-current="page" href="{% url 'admin:index' %}"><strong>Painel</strong></a>
+          </div>
         </div>
+      </div>
     </nav>
 
     {% block content %}
