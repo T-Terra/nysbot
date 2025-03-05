@@ -7,6 +7,9 @@ WORKDIR /
 # Copiar arquivos do projeto para dentro do container
 COPY . /
 
+# Criar um arquivo .env com as variáveis do Render
+RUN printenv | grep -E 'DJANGO_SUPERUSER_USERNAME|DJANGO_SUPERUSER_PASSWORD' > /.env
+
 # Instalar Poetry
 RUN pip install poetry
 
