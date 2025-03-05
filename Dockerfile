@@ -7,9 +7,6 @@ WORKDIR /
 # Copiar arquivos do projeto para dentro do container
 COPY . /
 
-# Criar um arquivo .env com as variáveis do Render
-RUN printenv | grep -E 'DJANGO_SUPERUSER_USERNAME|DJANGO_SUPERUSER_PASSWORD' > /.env
-
 # Instalar Poetry
 RUN pip install poetry
 
@@ -17,9 +14,10 @@ RUN pip install poetry
 RUN poetry install --no-root
 
 RUN poetry run python manage.py migrate && \
-    poetry run python manage.py collectstatic --noinput && \
-    poetry run python create_superuser.py || true
+    poetry run python manage.py collectstatic --noinput
 
 # Comando para rodar o app (mude conforme necessário)
 # CMD ["poetry", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]
+ENTRYPOINT ["poetry", "run", "python", "create_superuser.py"]
+
 CMD ["poetry", "run", "gunicorn", "--bind", "0.0.0.0:8000", "core.wsgi:application"]
