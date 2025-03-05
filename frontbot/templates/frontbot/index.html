@@ -11,31 +11,31 @@
                   <a style="text-decoration: none; color: black;" href="{{workflow.url}}" target="_blank"><h5 class="card-title">Bot: {{workflow.name}}</h5></a>
                   <p class="card-text">
                       <span style="font-weight: bold;">Status:</span> 
-                      <span hx-get="{% url 'check_status' %}" hx-trigger="load, every 30s" hx-target="#status">
+                      <span hx-get="{% url 'check_status' %}" hx-trigger="load, every 75s" hx-target="#status">
                         <span id="status">
                           <span class="spinner-border spinner-border-sm" role="status"></span>
                         </span>
                       </span><br>
                       <span style="font-weight: bold;">Resultado: </span>
-                      <span hx-get="{% url 'check_conclusions' %}" hx-trigger="load, every 30s" hx-target="#conclusion">
+                      <span hx-get="{% url 'check_conclusions' %}" hx-trigger="load, every 75s" hx-target="#conclusion">
                         <span id="conclusion">
                           <span class="spinner-border spinner-border-sm" role="status"></span>
                         </span>
                       </span><br>
                       <span style="font-weight: bold;">Iniciado em: </span>
-                      <span hx-get="{% url 'created_at' %}" hx-trigger="load, every 30s" hx-target="#created_at">
+                      <span hx-get="{% url 'created_at' %}" hx-trigger="load, every 75s" hx-target="#created_at">
                         <span id="created_at">
                           <span class="spinner-border spinner-border-sm" role="status"></span>
                         </span>
                       </span><br>
                       <span style="font-weight: bold;">Finalizado em: </span>
-                      <span hx-get="{% url 'updated_at' %}" hx-trigger="load, every 30s" hx-target="#updated_at">
+                      <span hx-get="{% url 'updated_at' %}" hx-trigger="load, every 75s" hx-target="#updated_at">
                         <span id="updated_at">
                           <span class="spinner-border spinner-border-sm" role="status"></span>
                         </span>
                       </span><br>
                   </p>
-                  <span hx-get="{% url 'check_status_button' %}" hx-trigger="load, every 15s" hx-target="#trigger-button" >
+                  <span hx-get="{% url 'check_status_button' %}" hx-trigger="load, every 75s" hx-target="#trigger-button" >
                     <span id="trigger-button">
                       <span class="spinner-border text-primary" style="width: 2rem; height: 2rem; margin-left: 2.5rem;" role="status"></span>
                     </span>
