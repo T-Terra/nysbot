@@ -1,5 +1,8 @@
 import os
 from django.contrib.auth import get_user_model
+from dotenv import load_dotenv
+
+load_dotenv(override=True)
 
 User = get_user_model()
 
