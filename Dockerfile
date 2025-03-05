@@ -2,10 +2,10 @@
 FROM python:3.12
 
 # Criar diretório de trabalho
-WORKDIR /app
+WORKDIR /
 
 # Copiar arquivos do projeto para dentro do container
-COPY . /app
+COPY . /
 
 # Instalar Poetry
 RUN pip install poetry
