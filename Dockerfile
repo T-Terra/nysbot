@@ -13,6 +13,8 @@ RUN pip install poetry
 # Instalar dependências do projeto
 RUN poetry install --no-root
 
+RUN mkdir -p /staticfiles
+
 RUN poetry run python manage.py migrate && \
     poetry run python manage.py collectstatic --noinput && \
     poetry run python create_superuser.py || true
