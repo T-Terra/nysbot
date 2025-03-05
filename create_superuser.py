@@ -15,8 +15,8 @@ django.setup()
 User = get_user_model()
 
 # Obter as variáveis de ambiente
-username = os.getenv("DJANGO_SUPERUSER_USERNAME", "admin")
-password = os.getenv("DJANGO_SUPERUSER_PASSWORD", "admin")
+username = os.environ.get("DJANGO_SUPERUSER_USERNAME")
+password = os.environ.get("DJANGO_SUPERUSER_PASSWORD")
 
 # Criar o superuser se não existir
 if not User.objects.filter(username=username).exists():
