@@ -14,7 +14,7 @@ RUN pip install poetry
 RUN poetry install --no-root
 
 RUN poetry run python manage.py migrate && \
-    poetry run python manage.py shell < create_superuser.py || true
+    poetry run python create_superuser.py || true
 
 # Comando para rodar o app (mude conforme necessário)
 CMD ["poetry", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]
